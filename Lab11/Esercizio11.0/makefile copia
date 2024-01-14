@@ -1,0 +1,15 @@
+LIBS := prisma.o
+DEPS := prisma.hpp random.hpp libreria.hpp
+RFLAGS := `root-config --cflags` `root-config --libs`
+
+main: main.cpp ${LIBS}
+	g++ -Wall -o  $@ $^ -std=c++11 ${RFLAGS}
+%.o: %.cpp %.h ${DEPS}
+	g++ -Wall -c 1 $< ${RFLAGS} 
+
+clean: 
+	rm *.o
+
+cleanall:
+	rm main
+	rm *.o
